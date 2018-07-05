@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:9999/?xsd=xsd3" namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_getImagesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:getImagesList" />
+  </wsdl:message>
+  <wsdl:message name="IService_getImagesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getImagesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImageNameMessage">
+    <wsdl:part name="parameters" element="tns:ImageNameMessage" />
+  </wsdl:message>
+  <wsdl:message name="ImageNameMessage_Headers">
+    <wsdl:part name="name" element="tns:name" />
+  </wsdl:message>
+  <wsdl:message name="ImageMessage">
+    <wsdl:part name="parameters" element="tns:ImageMessage" />
+  </wsdl:message>
+  <wsdl:message name="ImageMessage_Headers">
+    <wsdl:part name="name" element="tns:name" />
+    <wsdl:part name="size" element="tns:size" />
+  </wsdl:message>
+  <wsdl:message name="DescriptionMessage">
+    <wsdl:part name="parameters" element="tns:DescriptionMessage" />
+  </wsdl:message>
+  <wsdl:message name="DescriptionMessage_Headers">
+    <wsdl:part name="name" element="tns:name" />
+    <wsdl:part name="size" element="tns:size" />
+  </wsdl:message>
+  <wsdl:message name="IService_uploadImage_OutputMessage" />
+  <wsdl:message name="IService_uploadDescription_OutputMessage" />
+  <wsdl:portType name="IService">
+    <wsdl:operation name="getImagesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getImagesList" message="tns:IService_getImagesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getImagesListResponse" message="tns:IService_getImagesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="downloadImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/downloadImage" name="ImageNameMessage" message="tns:ImageNameMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/downloadImageResponse" name="ImageMessage" message="tns:ImageMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="downloadDescription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/downloadDescription" name="ImageNameMessage" message="tns:ImageNameMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/downloadDescriptionResponse" name="DescriptionMessage" message="tns:DescriptionMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/uploadImage" name="ImageMessage" message="tns:ImageMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/uploadImageResponse" message="tns:IService_uploadImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadDescription">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/uploadDescription" name="DescriptionMessage" message="tns:DescriptionMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/uploadDescriptionResponse" message="tns:IService_uploadDescription_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getImagesList">
+      <soap:operation soapAction="http://tempuri.org/IService/getImagesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="downloadImage">
+      <soap:operation soapAction="http://tempuri.org/IService/downloadImage" style="document" />
+      <wsdl:input name="ImageNameMessage">
+        <soap:header message="tns:ImageNameMessage_Headers" part="name" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ImageMessage">
+        <soap:header message="tns:ImageMessage_Headers" part="name" use="literal" />
+        <soap:header message="tns:ImageMessage_Headers" part="size" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="downloadDescription">
+      <soap:operation soapAction="http://tempuri.org/IService/downloadDescription" style="document" />
+      <wsdl:input name="ImageNameMessage">
+        <soap:header message="tns:ImageNameMessage_Headers" part="name" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DescriptionMessage">
+        <soap:header message="tns:DescriptionMessage_Headers" part="name" use="literal" />
+        <soap:header message="tns:DescriptionMessage_Headers" part="size" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadImage">
+      <soap:operation soapAction="http://tempuri.org/IService/uploadImage" style="document" />
+      <wsdl:input name="ImageMessage">
+        <soap:header message="tns:ImageMessage_Headers" part="name" use="literal" />
+        <soap:header message="tns:ImageMessage_Headers" part="size" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadDescription">
+      <soap:operation soapAction="http://tempuri.org/IService/uploadDescription" style="document" />
+      <wsdl:input name="DescriptionMessage">
+        <soap:header message="tns:DescriptionMessage_Headers" part="name" use="literal" />
+        <soap:header message="tns:DescriptionMessage_Headers" part="size" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://localhost:9999/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

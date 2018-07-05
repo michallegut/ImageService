@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="d:\programy\microsoft visual studio\2017\enterprise\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="15.0">
+ <Targets>
+  <Target Name="D:\Studia\RSI (L)\Ćwiczenie 4\Część 2\WcfImageService\WcfImageServiceContract\bin\Debug\WcfImageServiceContract.dll">
+   <Modules>
+    <Module Name="wcfimageservicecontract.dll">
+     <Namespaces>
+      <Namespace Name="WcfImageServiceContract">
+       <Types>
+        <Type Name="Service" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#downloadDescription(WcfImageServiceContract.ImageNameMessage)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2018-06-01 23:48:33Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="D:\Studia\RSI (L)\Ćwiczenie 4\Część 2\WcfImageService\WcfImageServiceContract" File="Service.cs" Line="52">Element 'Service.downloadDescription(ImageNameMessage)' ponownie zgłasza przechwycony wyjątek i określa go jawnie jako argument. Zamiast tego użyj funkcji throw bez argumentu, aby zachować miejsce na stosie, w którym wyjątek został początkowo zgłoszony.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#downloadImage(WcfImageServiceContract.ImageNameMessage)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2018-06-01 23:48:33Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="D:\Studia\RSI (L)\Ćwiczenie 4\Część 2\WcfImageService\WcfImageServiceContract" File="Service.cs" Line="32">Element 'Service.downloadImage(ImageNameMessage)' ponownie zgłasza przechwycony wyjątek i określa go jawnie jako argument. Zamiast tego użyj funkcji throw bez argumentu, aby zachować miejsce na stosie, w którym wyjątek został początkowo zgłoszony.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+   <Name>Ponowie zgłoś wyjątek, aby zachować szczegóły stosu</Name>
+   <Description>Użyj instrukcji rethrow w języku pośrednim (IL), aby zachować oryginalne szczegóły stosu podczas ponownego zgłaszania przechwyconego wyjątku.</Description>
+   <Resolution Name="Default">Element {0} ponownie zgłasza przechwycony wyjątek i określa go jawnie jako argument. Zamiast tego użyj funkcji throw bez argumentu, aby zachować miejsce na stosie, w którym wyjątek został początkowo zgłoszony.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182363.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="15.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Kategoria</String>
+  <String Key="Certainty">Pewność</String>
+  <String Key="CollapseAll">Zwiń wszystko</String>
+  <String Key="CheckId">Identyfikator testu</String>
+  <String Key="Error">Błąd</String>
+  <String Key="Errors">błędy</String>
+  <String Key="ExpandAll">Rozwiń wszystko</String>
+  <String Key="Help">Pomoc</String>
+  <String Key="Line">Wiersz</String>
+  <String Key="Messages">komunikaty</String>
+  <String Key="LocationNotStoredInPdb">[Lokalizacja nie jest przechowywana w pliku PDB]</String>
+  <String Key="Project">Projekt</String>
+  <String Key="Resolution">Rozwiązanie</String>
+  <String Key="Rule">Reguła</String>
+  <String Key="RuleFile">Plik reguł</String>
+  <String Key="RuleDescription">Opis reguły</String>
+  <String Key="Source">Źródło</String>
+  <String Key="Status">Stan</String>
+  <String Key="Target">Element docelowy</String>
+  <String Key="Warning">Ostrzeżenie</String>
+  <String Key="Warnings">ostrzeżenia</String>
+  <String Key="ReportTitle">Raport z analizy kodu</String>
+ </Localized>
+</FxCopReport>
